@@ -21,7 +21,7 @@ public class VentaDto
     public int? TotalNeto { get; set; }
     public int? Impuesto { get; set; }
     public int? TotalDocumento { get; set; }
-    public short? SucursalId { get; set; }
+    public short? Sucursal_Id { get; set; }
     public string NombreVendedor { get; set; } = null!;
     //public List<DetalleVentaDto> Detalles { get; set; } = new();
 }

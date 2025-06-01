@@ -27,11 +27,11 @@ public class VentaRepository : IVentaRepository
                             .ToListAsync();
     }
 
-    public async Task<IEnumerable<VentasSucursalMesDto>> GetVentasTotalesPorSucursalPorMesAsync()
+    public async Task<IEnumerable<VentasSucursalMesDto>> GetVentasTotalesPorSucursalPorMesAsync(short sucursalId,DateTime fecha)
     {
         return await _context.Ventas
         .Include(v => v.Sucursal)
-        .Where(v => v.Fecha.HasValue && v.Sucursal != null)
+        .Where(v => v.Fecha.HasValue && v.Sucursal != null && v.Sucursal_Id == sucursalId && v.Fecha.Value.Month == fecha.Month && v.Fecha.Value.Year == fecha.Year)
         .GroupBy(v => new { 
             v.Sucursal_Id, 
             Mes = v.Fecha!.Value.Month,

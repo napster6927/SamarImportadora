@@ -56,19 +56,19 @@ public class VentasController : ControllerBase
     /// Obtiene las ventas totales por sucursal por mes
     /// </summary>
     /// <returns>Lista de ventas totales por sucursal por mes</returns>
-    [HttpGet("ventas-totales-por-sucursal-por-mes")]
+    [HttpGet("ventas-totales-por-sucursal-por-mes/{sucursalId}/{fecha}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<VentasSucursalMesDto>))]
-    public async Task<ActionResult<IEnumerable<VentasSucursalMesDto>>> GetVentasTotalesPorSucursalPorMes()
+    public async Task<ActionResult<IEnumerable<VentasSucursalMesDto>>> GetVentasTotalesPorSucursalPorMes( [FromRoute] short sucursalId,[FromRoute] DateTime fecha)
     {
         try
         {
-            _logger.LogInformation("Obteniendo ventas totales por sucursal por mes");
+             _logger.LogWarning($"No se encontraron ventas para la sucursal {sucursalId} en la fecha {fecha:yyyy-MM-dd}");
 
-            var ventas = await _ventaService.GetVentasTotalesPorSucursalPorMesAsync();
+            var ventas = await _ventaService.GetVentasTotalesPorSucursalPorMesAsync(sucursalId,fecha);
 
             if (ventas == null || !ventas.Any())
             {
-                _logger.LogWarning("No se encontraron ventas totales por sucursal por mes");
+                _logger.LogWarning($"No se encontraron ventas totales por sucursal {sucursalId} en la fecha {fecha:yyyy-MM-dd}");
                 return NotFound();
             }
 
@@ -76,7 +76,7 @@ public class VentasController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error al obtener ventas totales por sucursal por mes");
+            _logger.LogError(ex, $"Error al obtener ventas totales por sucursal {sucursalId} en la fecha {fecha:yyyy-MM-dd}");
             return StatusCode(500, "Ocurrió un error al procesar la solicitud");
         }
     }

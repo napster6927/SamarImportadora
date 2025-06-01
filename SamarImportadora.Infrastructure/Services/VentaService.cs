@@ -22,9 +22,9 @@ public class VentaService : IVentaService
         return _mapper.Map<IEnumerable<VentaDto>>(ventas);
     }
 
-    public async Task<IEnumerable<VentasSucursalMesDto>> GetVentasTotalesPorSucursalPorMesAsync()
+    public async Task<IEnumerable<VentasSucursalMesDto>> GetVentasTotalesPorSucursalPorMesAsync(short sucursalId,DateTime fecha)
     {
-        var ventas = await _ventaRepository.GetVentasTotalesPorSucursalPorMesAsync();
+        var ventas = await _ventaRepository.GetVentasTotalesPorSucursalPorMesAsync(sucursalId,fecha);
         return _mapper.Map<IEnumerable<VentasSucursalMesDto>>(ventas);
     }
 }

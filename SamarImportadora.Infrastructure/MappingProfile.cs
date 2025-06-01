@@ -15,6 +15,8 @@ public class MappingProfile : Profile
         CreateMap<Vendedor, VendedorDto>();
         CreateMap<VendedorDto, Vendedor>();
         CreateMap<Venta, VentaDto>()
+            .ForMember(dest => dest.Sucursal_Id, opt => opt.MapFrom(src => src.Sucursal_Id));
+        CreateMap<Venta, VentaDto>()
             .ForMember(dest => dest.NombreVendedor,
                 opt => opt.MapFrom(src =>
                     src.Vendedor != null ?

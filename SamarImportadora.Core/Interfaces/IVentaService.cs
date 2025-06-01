@@ -7,5 +7,5 @@ namespace SamarImportadora.Core.Interfaces;
 public interface IVentaService
 {
     Task<IEnumerable<VentaDto>> ObtenerVentasPorSucursalYFechaAsync(short sucursalId, DateTime fecha); // Debe usar VentaDto
-    Task<IEnumerable<VentasSucursalMesDto>> GetVentasTotalesPorSucursalPorMesAsync();
+    Task<IEnumerable<VentasSucursalMesDto>> GetVentasTotalesPorSucursalPorMesAsync(short sucursalId,DateTime fecha);
 }
