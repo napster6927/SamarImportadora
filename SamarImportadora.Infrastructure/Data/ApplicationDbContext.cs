@@ -60,7 +60,7 @@ public class ApplicationDbContext : DbContext
     {
         entity.ToTable("ARTICULOS");
         
-        entity.Property(e => e.CodigoProducto)
+        entity.Property(e => e.Codigo_Producto)
             .HasColumnName("CODIGO_PRODUCTO")
             .HasMaxLength(255);
         

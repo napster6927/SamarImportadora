@@ -34,11 +34,11 @@ public partial class SamarImportadoraContext : DbContext
 
         modelBuilder.Entity<Articulo>(entity =>
         {
-            entity.HasKey(e => e.CodigoProducto);
+            entity.HasKey(e => e.Codigo_Producto);
 
             entity.ToTable("ARTICULOS");
 
-            entity.Property(e => e.CodigoProducto)
+            entity.Property(e => e.Codigo_Producto)
                 .HasMaxLength(255)
                 .HasColumnName("CODIGO_PRODUCTO");
             entity.Property(e => e.Categoria)

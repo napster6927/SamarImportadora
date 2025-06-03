@@ -34,6 +34,9 @@ builder.Services.AddScoped<IVentaService, VentaService>();
 builder.Services.AddScoped<IVendedorRepository, VendedorRepository>();
 builder.Services.AddScoped<IVendedorService, VendedorService>();
 
+builder.Services.AddScoped<IArticuloRepository, ArticuloRepository>();
+builder.Services.AddScoped<IArticuloService, ArticuloService>();
+
 // Configurar Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
